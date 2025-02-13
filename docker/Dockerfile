@@ -15,7 +15,7 @@ RUN adduser --disabled-password --gecos "" proxidize && \
 
 EXPOSE 8080
 
-COPY entrypoint.sh /home/aya/
+COPY entrypoint.sh /home/proxidize/
 
 RUN chmod +x /home/proxidize/entrypoint.sh && \
     chown -R proxidize:proxidize /home/proxidize
