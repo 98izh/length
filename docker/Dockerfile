@@ -31,6 +31,6 @@ RUN curl  https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaag
 
 ENV JAVAOPS="-Xms1024m -Xmx1024m -XX:+UseG1GC -XX:ParallelGCThreads=2 -XX:MaxGCPauseMillis=25000"
 
-COPY reports.jar /home/proxidize/app/
+COPY length.jar /home/proxidize/app/
 
 ENTRYPOINT [ "/home/proxidize/entrypoint.sh" ]
