@@ -28,6 +28,9 @@ WORKDIR /home/proxidize
 
 RUN curl  https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.18.0/jmx_prometheus_javaagent-0.18.0.jar -o /home/proxidize/jmx_prometheus_javaagent.jar
 
-COPY config.yaml /home/proxidize/config.yaml
+
+ENV JAVAOPS="-Xms1024m -Xmx1024m -XX:+UseG1GC -XX:ParallelGCThreads=2 -XX:MaxGCPauseMillis=25000"
+
+COPY reports.jar /home/proxidize/app/
 
 ENTRYPOINT [ "/home/proxidize/entrypoint.sh" ]
