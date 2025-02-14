@@ -1,4 +1,4 @@
-package com.example.lengthservice.controller;
+package com.proxidize_assienment.length.controller;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
