@@ -1,0 +1,15 @@
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 8081
+
+
+extraEnv:
+  - name: "JAVAOPS"
+    value: "-Xms1024m -Xmx1024m -XX:+UseG1GC -XX:ParallelGCThreads=2 -XX:MaxGCPauseMillis=25000 -Duser.timezone=Etc/GMT-3"
+
+podAnnotations:
+  prometheus.io/path: "/metrics"
+  prometheus.io/port: "9090"
+  prometheus.io/scrape: "true"
