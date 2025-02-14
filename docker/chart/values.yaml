@@ -3,6 +3,7 @@ replicaCount: 1
 service:
   type: ClusterIP
   port: 8081
+  containerPort: 8081
 
 http:
   livenessProbe:
