@@ -3,7 +3,19 @@ replicaCount: 1
 service:
   type: ClusterIP
   port: 8081
+  containerPort: 8081
 
+http:
+  livenessProbe:
+    path: /length/actuator/health
+    initialDelay: 50
+    tcpSocket:
+        port: 8081
+  readinessProbe:
+    path: /length/actuator/health
+    initialDelay: 50
+    tcpSocket:
+        port: 8081
 
 extraEnv:
   - name: "JAVAOPS"

@@ -10,6 +10,13 @@ public class LengthController {
 
     @PostMapping(value = "/length", produces = MediaType.TEXT_PLAIN_VALUE)
     public String computeLength(@RequestBody String text) {
-        return String.valueOf(text.length());
+        // Remove surrounding quotes if present
+        String processed = text.replaceAll("^\"|\"$", "");
+        
+        // Remove all spaces
+        processed = processed.replaceAll(" ", "");
+        
+        // Calculate length and add newline
+        return processed.length() + "\n";
     }
 }
