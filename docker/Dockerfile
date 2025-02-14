@@ -1,6 +1,6 @@
 FROM openjdk:21-jdk-bullseye
 
-ENV PORT=8080
+ENV PORT=8081
 
 RUN apt-get update && \
     apt-get -y upgrade && \
@@ -13,7 +13,7 @@ RUN adduser --disabled-password --gecos "" proxidize && \
     mkdir -p /home/proxidize/app && \
     mkdir -p /home/proxidize/logs
 
-EXPOSE 8080
+EXPOSE 8081
 
 COPY entrypoint.sh /home/proxidize/
 
