@@ -2,7 +2,7 @@
 java --version
 cd /home/proxidize/app/
 echo "Starting app length"
-FNAME=$(ls -1 /home/aya/app/length.jar)
+FNAME=$(ls -1 /home/proxidize/app/length.jar)
 
-java -javaagent:/home/aya/jmx_prometheus_javaagent.jar=9090:/home/aya/config.yaml -jar \
+java -javaagent:/home/proxidize/jmx_prometheus_javaagent.jar=9090:/home/proxidize/config.yaml -jar \
 -Dspring.profiles.active=$ENVIRONMENT $JAVAOPS $FNAME
