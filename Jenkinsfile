@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    tools { 
+        maven 'maven 3.8.6' 
+    }
     parameters {
         string(name: 'TAG', description: 'Docker image tag (e.g., 1.2)')
         string(name: 'BRANCH', description: 'Git branch to build from (e.g., main)')
