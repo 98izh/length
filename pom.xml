@@ -40,7 +40,7 @@
             <artifactId>opentelemetry-api</artifactId>
             <version>1.32.0</version>
         </dependency>
-		
+
         <dependency>
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-sdk</artifactId>
@@ -49,8 +49,8 @@
 
         <dependency>
             <groupId>io.opentelemetry.instrumentation</groupId>
-            <artifactId>opentelemetry-spring-boot-starter</artifactId>
-            <version>2.1.0</version>
+            <artifactId>opentelemetry-spring-boot-3-starter</artifactId>
+            <version>1.32.0</version>
         </dependency>
 
         <dependency>
