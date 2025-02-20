@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: length-service
+    component: length
+  name: length-service
+  namespace: proxidize
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: length-service
+      component: length
+  template:
+    metadata:
+      labels:
+        app: length-service
+        component: length
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/actuator/prometheus"
+        prometheus.io/port: "8081"
+    spec:
+      volumes:
+      - name: config-volume
+        configMap:
+          name: length-app-config
+      containers:
+      - name: length-service
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "2"
+          limits:
+            memory: "4Gi"
+            cpu: "4"
+        env:
+          - name: OTEL_METRICS_EXPORTER
+            value: "none"
+          - name: OTEL_TRACES_EXPORTER
+            value: "otlp"
+          - name: OTEL_EXPORTER_OTLP_ENDPOINT
+            value: "http://jaeger-collector.monitoring.svc.cluster.local:4317"
+          - name: OTEL_SERVICE_NAME
+            value: "length-service"
+          - name: OTEL_EXPORTER_OTLP_PROTOCOL
+            value: "grpc"
+          - name: OTEL_LOGS_EXPORTER
+            value: "none"
+        image: 98izh/length:latest
+        ports:
+        - containerPort: 8081
+          name: http
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: http
+          initialDelaySeconds: 60 #increase if pod failed to start
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: http
+          initialDelaySeconds: 60 #increase if pod failed to start

@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: length-service-monitor
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: length-service
+      component: length
+  namespaceSelector:
+    matchNames:
+    - proxidize
+  endpoints:
+  - path: /actuator/prometheus
+    port: http
+    interval: 15s
